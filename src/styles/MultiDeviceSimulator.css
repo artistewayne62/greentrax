@@ -25,3 +25,15 @@
   flex: 1;
   margin: 10px;
 }
+useEffect(() => {
+  const interval = setInterval(() => {
+    setDevices(prev =>
+      prev.map(device => ({
+        ...device,
+        messages: [...device.messages, `System ping at ${new Date().toLocaleTimeString()}`],
+      }))
+    );
+  }, 5000); // every 5 seconds
+  return () => clearInterval(interval);
+}, []);
+
