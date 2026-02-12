@@ -1,0 +1,32 @@
+.simulation-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.simulation-dashboard h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.simulation-dashboard button {
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.simulation-dashboard button:hover {
+  background-color: #45a049;
+}
+
+.simulation-dashboard .role {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 600px;
+}
