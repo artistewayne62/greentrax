@@ -1,25 +1,36 @@
 import React, { createContext, useContext, useState } from "react";
-import { UserRole, getRoleLabel } from "./roles";
-import { hasPermission, Permission } from "./permissions";
 
-const AuthContext = createContext<any>(null);
+type Role = "admin" | "user" | "guest" | null;
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  // Requirement: Automatically assigned guest status on open
-  const [role, setRole] = useState<UserRole | 'guest'>("guest");
+interface AuthState {
+  isAuthenticated: boolean;
+  role: Role;
+  setRole: (role: Role) => void;
+  login: () => void;
+  logout: () => void;
+}
 
-  const checkPermission = (permission: Permission) => hasPermission(role, permission);
+const AuthContext = createContext<AuthState | undefined>(undefined);
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [role, setRole] = useState<Role>(null);
+
+  const login = () => setIsAuthenticated(true);
+  const logout = () => {
+    setIsAuthenticated(false);
+    setRole(null);
+  };
 
   return (
-    <AuthContext.Provider value={{ 
-      role, 
-      setRole, 
-      roleLabel: role === 'guest' ? 'Guest' : getRoleLabel(role as UserRole),
-      checkPermission 
-    }}>
+    <AuthContext.Provider value={{ isAuthenticated, role, setRole, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
+  return ctx;
+};
