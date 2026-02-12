@@ -5,9 +5,11 @@ type Role = "admin" | "user" | "guest" | null;
 interface AuthState {
   isAuthenticated: boolean;
   role: Role;
+  roleLabel: string; // always a safe string
   setRole: (role: Role) => void;
   login: () => void;
   logout: () => void;
+  checkPermission: (required: Role) => boolean;
 }
 
 const AuthContext = createContext<AuthState | undefined>(undefined);
@@ -22,8 +24,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setRole(null);
   };
 
+  // Always provide a safe label
+  const roleLabel = role ? role : "guest";
+
+  // Permission logic
+  const checkPermission = (required: Role) => {
+    if (!role) return false;
+    if (role === "admin") return true; // admins can access everything
+    return role === required;
+  };
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, role, setRole, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        role,
+        roleLabel,
+        setRole,
+        login,
+        logout,
+        checkPermission,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
