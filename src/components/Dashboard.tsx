@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../core/auth/AuthContext";
 import MediaGallery from "./MediaGallery";
 
-const CommandConsole: React.FC = () => {
+const Dashboard: React.FC = () => {
   const { role, roleLabel, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("overview");
 
