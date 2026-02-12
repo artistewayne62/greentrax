@@ -64,4 +64,28 @@
   border: 1px solid #333;
   border-radius: 4px;
 }
+.scrollable {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.tabs button {
+  padding: 1rem; /* bigger tap target */
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.tabs button:active {
+  background: #2ecc71; /* feedback on tap */
+}
+
+.device-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #222;
+  border-radius: 6px;
+  touch-action: manipulation; /* improves mobile tap responsiveness */
+}
+
 
