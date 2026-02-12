@@ -4,6 +4,7 @@ import { StartupScreen } from "./components/StartupScreen";
 import { MediaGallery } from "./components/MediaGallery";
 import RoleSwitcher from "./components/RoleSwitcher";
 import MultiDeviceSimulator from "./components/MultiDeviceSimulator";
+import "./styles/simulator.css";
 
 function MainUI() {
   const { role } = useAuth();
