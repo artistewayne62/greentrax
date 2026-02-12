@@ -1,10 +1,35 @@
 import { useState } from "react";
-import { AuthProvider } from "./core/auth/AuthContext";
+import { AuthProvider, useAuth } from "./core/auth/AuthContext";
 import { StartupScreen } from "./components/StartupScreen";
 import { MediaGallery } from "./components/MediaGallery";
 import RoleSwitcher from "./components/RoleSwitcher";
-import "./styles/simulator.css";
 import MultiDeviceSimulator from "./components/MultiDeviceSimulator";
+
+function MainUI() {
+  const { role } = useAuth();
+
+  return (
+    <main className="fade-in">
+      <h1>Command Center</h1>
+      <RoleSwitcher />
+      {role === "admin" && (
+        <>
+          <p>You have admin privileges.</p>
+          <MultiDeviceSimulator role={role} />
+        </>
+      )}
+      {role === "user" && (
+        <>
+          <MediaGallery />
+          <MultiDeviceSimulator role={role} />
+        </>
+      )}
+      {role === "guest" && (
+        <p>Guest access: limited view only.</p>
+      )}
+    </main>
+  );
+}
 
 export default function App() {
   const [isBooted, setIsBooted] = useState(false);
@@ -14,13 +39,7 @@ export default function App() {
       {!isBooted ? (
         <StartupScreen onComplete={() => setIsBooted(true)} />
       ) : (
-        <main className="fade-in">
-          {/*actual UI starts*/}
-          <h1>Command Center</h1>
-          <RoleSwitcher />
-          <MediaGallery />
-          <MultiDeviceSimulator />
-        </main>
+        <MainUI />
       )}
     </AuthProvider>
   );
