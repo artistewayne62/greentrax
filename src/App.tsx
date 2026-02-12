@@ -1,40 +1,9 @@
 import { useState } from "react";
-import { AuthProvider, useAuth } from "./core/auth/AuthContext";
+import { AuthProvider } from "./core/auth/AuthContext";
 import { StartupScreen } from "./components/StartupScreen";
-import { MediaGallery } from "./components/MediaGallery";
 import RoleSwitcher from "./components/RoleSwitcher";
-import MultiDeviceSimulator from "./components/MultiDeviceSimulator";
+import Dashboard from "./components/Dashboard";
 import "./styles/simulator.css";
-
-function MainUI() {
-  const { role } = useAuth();
-
-  return (
-    <main className="fade-in">
-      <h1>Command Center</h1>
-      <RoleSwitcher />
-      {role === "admin" && (
-        <>
-          <MediaGallery />
-          <MultiDeviceSimulator role={role} />
-        </>
-      )}
-      {role === "user" && (
-        <>
-          <MediaGallery />
-          <MultiDeviceSimulator role={role} />
-        </>
-      )}
-      {role === "guest" && (
-        <MultiDeviceSimulator role={role} />
-      )}
-    </main>
-  );
-}
-
-    </main>
-  );
-}
 
 export default function App() {
   const [isBooted, setIsBooted] = useState(false);
@@ -44,9 +13,12 @@ export default function App() {
       {!isBooted ? (
         <StartupScreen onComplete={() => setIsBooted(true)} />
       ) : (
-        <MainUI />
+        <main className="fade-in">
+          <h1>Command Center</h1>
+          <RoleSwitcher />
+          <Dashboard />
+        </main>
       )}
     </AuthProvider>
-    
   );
 }
