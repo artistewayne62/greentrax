@@ -1,0 +1,23 @@
+D:\GreenTraX\VSCode\greentrax_web
+
+npm install lucide-react framer-motion sonner clsx tailwind-merge
+
+**Package,Purpose in GreenTrax**
+lucide-react,"Provides all tactical icons: ShieldAlert, GpsFixed, Signal, Radio, etc."
+
+framer-motion,Required for the Floating Windows (dragging/dropping) and smooth HUD transitions.
+
+sonner,"The notification engine for ActionHub alerts (e.g., ""Dispatch Confirmed"")."
+
+clsx & tailwind-merge," Standard utilities to help manage complex Tailwind classes, especially for role-based conditional styling."
+
+for css animations; npm install -D tailwindcss postcss autoprefixer
+
+COMPLETE HUD: operational UI where:
+
+Header controls the world's permissions.
+ActionHub handles the mission logs.
+MapWidget tracks the sectors.
+VideoFeed plays the simulation clips.
+SatelliteView monitors the orbital data.
+AudioStream connects the teams.

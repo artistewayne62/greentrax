@@ -1,0 +1,24 @@
+:root {
+  /* GreenTraX Brand Colors */
+  --primary: 142.1 70.6% 45.3%; /* GreenTraX Signature Green */
+  --primary-foreground: 144.4 80% 10%;
+  
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 8%; /* Slightly lighter than background for depth */
+  --border: 217.2 32.6% 17.5%;
+}
