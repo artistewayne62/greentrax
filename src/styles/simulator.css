@@ -1,0 +1,40 @@
+.multi-sim {
+  padding: 1rem;
+  background: #f9fafb;
+}
+
+.device-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.device-card {
+  flex: 1 1 250px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #ffffff;
+}
+
+.device-card h3 {
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.messages {
+  min-height: 100px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 0.5rem;
+  background: #f3f4f6;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.device-card input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #9ca3af;
+  border-radius: 4px;
+}
