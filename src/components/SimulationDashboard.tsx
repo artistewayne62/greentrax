@@ -1,31 +1,39 @@
 import React, { useState } from 'react';
 
-const roles = {
-    admin: { features: ['View Dashboard', 'Manage Users', 'Edit Settings'] },
-    user: { features: ['View Dashboard'] },
-    guest: { features: [] },
+const roleFeatures = {
+    admin: ["Manage Users", "View Reports", "Change Settings"],
+    user: ["View Content", "Comment on Posts"],
+    guest: ["View Content"]
 };
 
 const SimulationDashboard = () => {
-    const [currentRole, setCurrentRole] = useState('guest');
+    const [selectedRole, setSelectedRole] = useState('guest');
+    const [actionLog, setActionLog] = useState([]);
 
-    const handleRoleChange = (event) => {
-        setCurrentRole(event.target.value);
+    const handleRoleChange = (role) => {
+        setSelectedRole(role);
+        setActionLog([...actionLog, `Switched to ${role} role`]);
     };
 
     return (
         <div>
-            <h1>Role-Based Simulation Dashboard</h1>
-            <label>Select Role: </label>
-            <select value={currentRole} onChange={handleRoleChange}>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-                <option value="guest">Guest</option>
-            </select>
-            <h2>Features Available:</h2>
+            <h1>Role Switcher</h1>
+            <div>
+                <h2>Select Role</h2>
+                {Object.keys(roleFeatures).map((role) => (
+                    <button key={role} onClick={() => handleRoleChange(role)}>{role}</button>
+                ))}
+            </div>
+            <h2>Features for {selectedRole} role:</h2>
             <ul>
-                {roles[currentRole].features.map((feature, index) => (
-                    <li key={index}>{feature}</li>
+                {roleFeatures[selectedRole].map((feature) => (
+                    <li key={feature}>{feature}</li>
+                ))}
+            </ul>
+            <h2>Action Log:</h2>
+            <ul>
+                {actionLog.map((log, index) => (
+                    <li key={index}>{log}</li>
                 ))}
             </ul>
         </div>
