@@ -38,3 +38,30 @@
   border: 1px solid #9ca3af;
   border-radius: 4px;
 }
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tabs button {
+  padding: 0.5rem 1rem;
+  background: #222;
+  color: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+.tabs button.active {
+  background: #4ade80;
+  color: #000;
+  font-weight: bold;
+}
+
+.tab-content {
+  padding: 1rem;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
