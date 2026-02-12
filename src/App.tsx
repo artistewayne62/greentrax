@@ -3,6 +3,7 @@ import { AuthProvider } from "./core/auth/AuthContext";
 import { StartupScreen } from "./components/StartupScreen";
 import { MediaGallery } from "./components/MediaGallery";
 import RoleSwitcher from "./components/RoleSwitcher";
+import "./styles/simulator.css";
 import MultiDeviceSimulator from "./components/MultiDeviceSimulator";
 
 export default function App() {
