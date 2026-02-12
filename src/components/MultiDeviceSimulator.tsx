@@ -6,7 +6,11 @@ interface Device {
   messages: string[];
 }
 
-const MultiDeviceSimulator: React.FC = () => {
+interface Props {
+  role: "admin" | "user" | "guest" | null;
+}
+
+const MultiDeviceSimulator: React.FC<Props> = ({ role }) => {
   const [devices, setDevices] = useState<Device[]>([
     { id: 1, name: "Device A", messages: [] },
     { id: 2, name: "Device B", messages: [] },
@@ -25,9 +29,12 @@ const MultiDeviceSimulator: React.FC = () => {
     );
   };
 
+  const canBroadcast = role === "admin";
+  const canSend = role === "admin" || role === "user";
+
   return (
     <div className="multi-sim">
-      <h2>Multi-Device Simulator</h2>
+      <h2>Multi-Device Simulator ({role})</h2>
       <div className="device-grid">
         {devices.map(device => (
           <div key={device.id} className="device-card">
@@ -37,19 +44,23 @@ const MultiDeviceSimulator: React.FC = () => {
                 <p key={i}>{msg}</p>
               ))}
             </div>
-            <input
-              type="text"
-              placeholder="Type a message..."
-              onKeyDown={e => {
-                if (e.key === "Enter" && e.currentTarget.value.trim()) {
-                  sendMessage(device.id, e.currentTarget.value);
-                  e.currentTarget.value = "";
-                }
-              }}
-            />
+            {canSend && (
+              <input
+                type="text"
+                placeholder="Type a message..."
+                onKeyDown={e => {
+                  if (e.key === "Enter" && e.currentTarget.value.trim()) {
+                    sendMessage(device.id, e.currentTarget.value);
+                    e.currentTarget.value = "";
+                  }
+                }}
+              />
+            )}
+            {!canSend && <p>Guests cannot send messages.</p>}
           </div>
         ))}
       </div>
+      {canBroadcast && <p>Admins can broadcast to all devices.</p>}
     </div>
   );
 };
