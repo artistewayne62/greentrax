@@ -15,7 +15,7 @@ function MainUI() {
       <RoleSwitcher />
       {role === "admin" && (
         <>
-          <p>You have admin privileges.</p>
+          <MediaGallery />
           <MultiDeviceSimulator role={role} />
         </>
       )}
@@ -26,8 +26,12 @@ function MainUI() {
         </>
       )}
       {role === "guest" && (
-        <p>Guest access: limited view only.</p>
+        <MultiDeviceSimulator role={role} />
       )}
+    </main>
+  );
+}
+
     </main>
   );
 }
@@ -43,5 +47,6 @@ export default function App() {
         <MainUI />
       )}
     </AuthProvider>
+    
   );
 }
