@@ -70,7 +70,11 @@ export const MediaGallery = () => {
             
             {/* Viewport Overlay */}
             <div className="absolute top-8 left-8 z-40 bg-black/50 backdrop-blur-md p-5 rounded-xl border border-white/10">
-              <p className="text-green-500 text-[10px] font-mono font-bold mb-1">00:0{Math.floor(Math.random()*9)} // AUTH_LVL: {roleLabel.toUpperCase()}</p>
+              {/*<p className="text-green-500 text-[10px] font-mono font-bold mb-1">00:0{Math.floor(Math.random()*9)} // AUTH_LVL: {roleLabel.toUpperCase()}</p>*/}
+              <p className="text-green-500 text-[10px] font-mono font-bold mb-1">
+  00:0{Math.floor(Math.random()*9)} // AUTH_LVL: {(role ?? "guest").toUpperCase()}
+</p>
+
               <h2 className="text-2xl font-black uppercase tracking-tight text-white">{activeAsset.label}</h2>
             </div>
 
