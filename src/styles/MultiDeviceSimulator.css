@@ -1,0 +1,27 @@
+.multi-device-simulator {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.device {
+  width: 200px;
+  height:400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.device-title {
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.device-screen {
+  flex: 1;
+  margin: 10px;
+}
